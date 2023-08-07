@@ -1,31 +1,24 @@
+require("dotenv").config()
 module.exports = {
     development: {
-        userName: "postgres",
-        password: "212292",
-        database: "postgres",
-        host: "127.0.0.1",
-        port: 5432,
-        dialect: "postgres",
-        schema: "onlineMarketDB",
-        ssl: false,
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: process.env.DB_DIALECT,
+        schema: process.env.DB_SCHEMA,
+        ssl: true,
         dialectOptions: {
             bigNumberStrings: true,
-            ssl: false,
+            timezone: "Asia/Bangkok",
         },
         timestamp: true,
-        timezone: "+07:00",
+        timezone: "Asia/Bangkok",
         logging: false,
-        seederStorage: "sequelize",
-        seederStorageTableName: "sequelize_data",
-        define: {
-            schema: "onlineMarketDB",
-        },
-        migrationStorageTableName: "sequelize_meta",
-        migrationStorageTableSchema: "onlineMarketDB",
-        searchPath: "onlineMarketDB",
     },
     test: {
-        userName: process.env.CI_DB_USERNAME,
+        username: process.env.CI_DB_USERNAME,
         password: process.env.CI_DB_PASSWORD,
         database: process.env.CI_DB_NAME,
         host: "127.0.0.1",
@@ -36,7 +29,7 @@ module.exports = {
         },
     },
     production: {
-        userName: process.env.DB_USERNAME,
+        username: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
@@ -46,13 +39,14 @@ module.exports = {
         ssl: true,
         dialectOptions: {
             bigNumberStrings: true,
+            timezone: "+00:00",
         },
         define: {
             schema: "onlineMarketDB",
         },
         searchPath: "onlineMarketDB",
         timestamp: true,
-        timezone: "+07:00",
+        timezone: "+00:00",
         logging: false,
     },
 }
